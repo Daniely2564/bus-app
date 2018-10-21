@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-12 col-md-9 mb-2 mb-md-0">
                             <select name="type" class="form-control">
-                                <option value="stop">Bus Stop</option>
+                                <option value="stop" {{#if busStop}}selected{{/if}}>Bus Stop</option>
                                 <option value="no">Bus No.</option>
                                 <option value="destination">Destination</option>
                             </select>
@@ -25,7 +25,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                 <div class="form-row">
                     <div class="col-12 col-md-9 mb-2 mb-md-0">
-                        <input type="text" name="value" class="form-control form-control-lg text-center">
+                        <input type="text" name="value" {{#if value}}value="{{value}}"{{/if}} class="form-control form-control-lg text-center">
                     </div>
                     <div class="col-12 col-md-3">
                         <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
@@ -36,7 +36,23 @@
         </div>
     </div>
 </header>
-
+{{#if error}}
+<div class="text-center">
+    <div class="alert alert-danger" role="alert">
+        {{error}}
+    </div>
+</div>
+{{/if}}
+{{#if list}}
+<ul class="list-group">
+    {{#each list}}
+    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:150%">
+        {{this.dest}}
+        <span class="badge badge-primary badge-pill" style="font-size:110%">{{this.min}}</span>
+    </li>
+  {{/each}}
+</ul>
+{{/if}}
 <!-- Icons Grid -->
 <section class="features-icons bg-light text-center">
     <div class="container">

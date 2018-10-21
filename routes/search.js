@@ -6,7 +6,8 @@ router.route('/bus')
     .post((req, res) => {
         switch (req.body.type) {
             case 'stop':
-                return stopNO(req, res, req.body.value)
+                stopNO(req, res, req.body.value)
+                break;
 
         }
     })
@@ -17,17 +18,27 @@ const stopNO = (req, res, value) => {
         const $ = cheerio.load(data.body);
         let val = ($.html().toString() + '').replace(/[\t\n]/gm, "");
         // let matches = val.match(/To \d+ [a-zA-z ]+/gm);
-        let destination = val.match(/To \d+ [a-zA-Z ]+/gm)
-        let times = val.match(/\d+&#xA0;MIN/gm);
+        let destination = val.match(/To [\da-zA-Z]+ [a-zA-Z ]+/gm)
+        let times = val.match(/\d+&#xA0;MIN|DELAYED|1 MIN/gm);
         if (destination == null) {
-            req.flash()
-            res.redirect('/');
+            console.log(val);
+            return res.render('index/main',{
+                error:'Currently no bus is arriving soon',
+                value,
+                busStop:true,
+            })
         } else {
             let comingBuses = [];
+            console.log(val)
             for (let i = 0; i < destination.length; i++) {
-                comingBuses.push({ dest: destination[i], min: times[i].replace(/&#xA0;MIN/gm, '') })
+                comingBuses.push({ dest: destination[i].replace('To','To.'), min: times[i].replace(/&#xA0;MIN| MIN/gm, '').includes('DELAYED')?'DELAYED':times[i].replace(/&#xA0;MIN| MIN/gm, '')+' mins' })
             }
             console.log(comingBuses)
+            return res.render('index/main',{
+                busStop:true,
+                value,
+                list:comingBuses
+            })
         }
     })
 }

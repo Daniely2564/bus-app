@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const request = require('request');
+const request = require('ajax-request');
 const cheerio = require('cheerio');
 
 router.route('/bus')
@@ -14,8 +14,8 @@ router.route('/bus')
     ;
 
 const stopNO = (req, res, value) => {
-    request(`https://mybusnow.njtransit.com/bustime/wireless/html/eta.jsp?route=---&direction=---&displaydirection=---&stop=---&findstop=on&selectedRtpiFeeds=&id=${value}`, (err, data) => {
-        const $ = cheerio.load(data.body);
+    request(`https://mybusnow.njtransit.com/bustime/wireless/html/eta.jsp?route=---&direction=---&displaydirection=---&stop=---&findstop=on&selectedRtpiFeeds=&id=${value}`, (err, data,body) => {
+        const $ = cheerio.load(body);
         let val = ($.html().toString() + '').replace(/[\t\n]/gm, "");
         // let matches = val.match(/To \d+ [a-zA-z ]+/gm);
         let destination = val.match(/To [\da-zA-Z]+ [a-zA-Z ]+/gm)

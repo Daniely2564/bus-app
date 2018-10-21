@@ -80,8 +80,13 @@ const busNo = (req,res,value)=>{
                 let parents = $('ul li a').get();
                 let list = [];
                 parents.forEach((parent)=>{
-                    list.push({attr:parent.attribs,text:parent.children[0].data.replace(/[\t\n]/gm,'')});
+                    list.push({attr:parent.attribs.href,text:parent.children[0].data.replace(/[\t\n]/gm,'')});
                 });
+                res.render('index/main',{
+                    value,
+                    busNo:true,
+                    busOptions:list,
+                })
             }
         });
       

@@ -14,7 +14,7 @@ router.route('/bus')
     ;
 
 const stopNO = (req, res, value) => {
-    request(`http://mybusnow.njtransit.com/bustime/wireless/html/eta.jsp?route=---&direction=---&displaydirection=---&stop=---&findstop=on&selectedRtpiFeeds=&id=${value}`, (err, data) => {
+    request(`https://mybusnow.njtransit.com/bustime/wireless/html/eta.jsp?route=---&direction=---&displaydirection=---&stop=---&findstop=on&selectedRtpiFeeds=&id=${value}`, (err, data) => {
         const $ = cheerio.load(data.body);
         let val = ($.html().toString() + '').replace(/[\t\n]/gm, "");
         // let matches = val.match(/To \d+ [a-zA-z ]+/gm);

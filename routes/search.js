@@ -58,7 +58,7 @@ const busNo = (req,res,value)=>{
             // The whole response has been received. Print out the result.
             resp.on('end', () => {
               console.log(data);
-              req.flash('error','it worked bro')
+              req.flash('error',data)
               res.redirect('/')
             });
           

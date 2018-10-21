@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const request = require('ajax-request');
 const cheerio = require('cheerio');
+const http = require('http');
 
 router.route('/bus')
     .post((req, res) => {
@@ -8,7 +9,8 @@ router.route('/bus')
             case 'stop':
                 stopNO(req, res, req.body.value)
                 break;
-
+            case 'no':
+                busNo(req,res,req.body.value);
         }
     })
     ;
@@ -41,6 +43,28 @@ const stopNO = (req, res, value) => {
             })
         }
     })
+}
+
+const busNo = (req,res,value)=>{
+  
+        http.get('http://mybusnow.njtransit.com/bustime/wireless/html/selectdirection.jsp?route=1',(resp)=>{
+            let data = '';
+
+            // A chunk of data has been recieved.
+            resp.on('data', (chunk) => {
+              data += chunk;
+            });
+          
+            // The whole response has been received. Print out the result.
+            resp.on('end', () => {
+              console.log(data);
+              req.flash('error','it worked bro')
+              res.redirect('/')
+            });
+          
+          }).on("error", (err) => {
+            console.log("Error: " + err.message);
+          });
 }
 
 module.exports = router;

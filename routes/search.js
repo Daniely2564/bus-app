@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const request = require('ajax-request');
 const cheerio = require('cheerio');
 const http = require('http');
 

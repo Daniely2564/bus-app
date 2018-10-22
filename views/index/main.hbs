@@ -64,7 +64,7 @@
 {{#if busItems}}
 {{#each busItems}}
 <form method="post" action="/search/bus">
-    <input type="hidden" name="value" value="stop"/>
+    <input type="hidden" name="type" value="stop"/>
     <input type="hidden" name="value" value="{{this.attr}}"/>
     <button class="w-100 py-3" style="font-size:110%">{{this.text}}</button>
 </form>

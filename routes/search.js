@@ -32,12 +32,22 @@ const stopNO = (req, res, value) => {
             let destination = val.match(/To [\da-zA-Z]+ [a-zA-Z ]+/gm)
             let times = val.match(/\d+&#xA0;MIN|DELAYED|1 MIN/gm);
             if (destination == null) {
-                console.log(val);
-                return res.render('index/main',{
-                    error:'Currently no bus is arriving soon',
-                    value,
-                    busStop:true,
-                })
+                if(val.includes('Selected Stop: ')){
+                    let stop = val.match(/Selected Stop: [\w\+ ]+/gm)[0].replace('Selected Stop: ','');
+                    return res.render('index/main',{
+                        error:`Stop : ${stop} has No bus arriving soon`,
+                        value,
+                        busStop:true,
+                        
+                    })
+                }else{
+                    return res.render('index/main',{
+                        error:`No Such Stop exists`,
+                        value,
+                        busStop:true,
+                        
+                    })
+                }
             } else {
                 let comingBuses = [];
                 console.log(val)

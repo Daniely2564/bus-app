@@ -14,23 +14,19 @@
                         </div>
                         <div class="col-12 col-md-9 mb-2 mb-md-0">
                             <select name="type" class="form-control">
-                                <option value="stop" {{#if busStop}}selected{{/if}}>Bus Stop</option>
-                                <option value="no" {{#if busNo}}selected{{/if}}>Bus No.</option>
-                                <option value="destination">Destination</option>
-                            </select>
-                        </div>
-                    </div>
-            </div>
-
-            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                <div class="form-row">
-                    <div class="col-12 col-md-9 mb-2 mb-md-0">
-                        <input type="text" name="value" {{#if value}}value="{{value}}"{{/if}} class="form-control form-control-lg text-center">
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
-                    </div>
-                </div>
+                                <option value="stop" {{#if busStop}} selected{{/if}}>Bus Stop</option> <option value="no"
+                                    {{#if busNo}} selected{{/if}}>Bus No.</option> <option value="destination"
+                                    {{#if busDest}} selected{{/if}}>Destination </option> </select> </div> </div> </div>
+                                    <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                                    <div class="form-row">
+                                        <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                            <input type="text" name="value" {{#if value}} value="{{value}}" {{/if}}
+                                                class="form-control form-control-lg text-center">
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
+                                        </div>
+                                    </div>
                 </form>
             </div>
         </div>
@@ -50,13 +46,13 @@
         {{this.dest}}
         <span class="badge badge-primary badge-pill" style="font-size:110%">{{this.min}}</span>
     </li>
-  {{/each}}
+    {{/each}}
 </ul>
 {{/if}}
 {{#if busOptions}}
 {{#each busOptions}}
 <form method="post" action="/dest">
-    <input type="hidden" name="link" value="{{this.attr}}"/>
+    <input type="hidden" name="link" value="{{this.attr}}" />
     <button class="w-100 py-3" style="font-size:140%">{{this.text}}</button>
 </form>
 {{/each}}
@@ -64,8 +60,8 @@
 {{#if busItems}}
 {{#each busItems}}
 <form method="get" action="/bus">
-    <input type="hidden" name="type" value="stop"/>
-    <input type="hidden" name="value" value="{{this.attr}}"/>
+    <input type="hidden" name="type" value="stop" />
+    <input type="hidden" name="value" value="{{this.attr}}" />
     <button class="w-100 py-3" style="font-size:110%">{{this.text}}</button>
 </form>
 {{/each}}
@@ -113,7 +109,8 @@
             <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('/img/bg-showcase-1.jpg');"></div>
             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                 <h2>Fully Responsive Design</h2>
-                <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether
+                <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look
+                    great on any device, whether
                     it's a phone, tablet, or desktop the page will behave responsively!</p>
             </div>
         </div>
@@ -121,7 +118,8 @@
             <div class="col-lg-6 text-white showcase-img" style="background-image: url('/img/bg-showcase-2.jpg');"></div>
             <div class="col-lg-6 my-auto showcase-text">
                 <h2>Updated For Bootstrap 4</h2>
-                <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web
+                <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way
+                    in mobile responsive web
                     development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
             </div>
         </div>
@@ -129,7 +127,8 @@
             <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('/img/bg-showcase-3.jpg');"></div>
             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                 <h2>Easy to Use &amp; Customize</h2>
-                <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options.
+                <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some
+                    deeper customization options.
                     Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
             </div>
         </div>
@@ -152,7 +151,8 @@
                 <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                     <img class="img-fluid rounded-circle mb-3" src="/img/testimonials-2.jpg" alt="">
                     <h5>Fred S.</h5>
-                    <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
+                    <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super
+                        nice landing pages."</p>
                 </div>
             </div>
             <div class="col-lg-4">

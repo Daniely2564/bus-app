@@ -32,8 +32,8 @@ app.use(function (req, res, next) {
 
 app.set('view engine', 'hbs');
 
-app.use('/', require('./routes/index'));
-app.use('/search', require('./routes/search'));
+app.use(require('./routes/index'));
+app.use(require('./routes/search'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

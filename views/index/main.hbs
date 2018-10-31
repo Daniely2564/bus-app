@@ -7,7 +7,7 @@
                 <h1 class="mb-5">Search</h1>
             </div>
             <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                <form method="post" action="/search/bus">
+                <form method="get" action="/bus">
                     <div class="form-row mb-4">
                         <div class="col-12 col-md-3">
                             <h2>By</h2>
@@ -63,7 +63,7 @@
 {{/if}}
 {{#if busItems}}
 {{#each busItems}}
-<form method="post" action="/search/bus">
+<form method="get" action="/bus">
     <input type="hidden" name="type" value="stop"/>
     <input type="hidden" name="value" value="{{this.attr}}"/>
     <button class="w-100 py-3" style="font-size:110%">{{this.text}}</button>
